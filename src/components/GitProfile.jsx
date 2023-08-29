@@ -142,36 +142,25 @@ const GitProfile = ({ config }) => {
 
   return (
     <HelmetProvider>
-      {sanitizedConfig && (
         <HeadTagEditor
           profile={profile}
           theme={theme}
           googleAnalytics={sanitizedConfig.googleAnalytics}
           social={sanitizedConfig.social}
         />
-      )}
       <div className="fade-in h-screen">
-        {error ? (
-          <ErrorPage
-            status={`${error.status}`}
-            title={error.title}
-            subTitle={error.subTitle}
-          />
-        ) : (
-          sanitizedConfig && (
+
             <Fragment>
               <div className={`p-4 lg:p-10 min-h-full ${bgColor}`}>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 rounded-box">
                   <div className="col-span-1">
                     <div className="grid grid-cols-1 gap-6">
-                      {!sanitizedConfig.themeConfig.disableSwitch && (
                         <ThemeChanger
                           theme={theme}
                           setTheme={setTheme}
-                          loading={loading}
+                          loading={false}
                           themeConfig={sanitizedConfig.themeConfig}
                         />
-                      )}
                       <AvatarCard
                         profile={profileData}
                         loading={loading}
@@ -232,8 +221,6 @@ const GitProfile = ({ config }) => {
                 </div>
               </footer>
             </Fragment>
-          )
-        )}
       </div>
     </HelmetProvider>
   );
